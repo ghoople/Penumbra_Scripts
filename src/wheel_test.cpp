@@ -125,6 +125,8 @@ void loop() {
     // 0 - 3000 seems reasonable to start, may want to adjust
   User_Speed = map(abs(averageVelocity),0,42000,0,3000);
 
+
+  // This Loop Occurs Every 200 ms. Updating faster seems to cause the motor to freak out. 
   if (motorTime - motorStartTime >= 200) {
     if(Wheel_position > last_Wheel_position){ // Go UP
       motor.VelMax(User_Speed); // Sets the maximum velocity for this move based on the potentiometer

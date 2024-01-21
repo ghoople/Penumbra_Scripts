@@ -1,10 +1,10 @@
 /*
  * Title: Motor Jog Control (No Home)
- * This is for manual movements only.
+ * This code is for manual movements testing.
  */
 
 #include <Arduino.h>
-#include "ClearCore.h"
+#include <ClearCore.h>
 
 // Specifies which motor to move.
 // Options are: ConnectorM0, ConnectorM1, ConnectorM2, or ConnectorM3.
