@@ -7,8 +7,8 @@ int position;
 int brightness;
 
 void setup() {
-  // Start serial communication on Serial1 with a baud rate of 9600
-  Serial1.begin(9600);
+  // Start serial communication on Serial1 with a baud rate of 28800
+  Serial1.begin(28800);
   Serial1.ttl(true); 
   while (!Serial1) {
       continue;
