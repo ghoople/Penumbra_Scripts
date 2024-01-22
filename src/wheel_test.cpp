@@ -19,7 +19,6 @@ float averageVelocity;
 float totalVelocity = 0.0;
 int readingsCount = 0;
 
-
 // Variables to store encoder state
 int32_t Wheel_position = 0;
 int32_t last_Wheel_position = 0;
