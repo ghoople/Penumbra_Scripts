@@ -14,8 +14,8 @@
 #define baudRate 9600
 
 //Configure Inputs
-#define UpButton IO0
-#define DownButton IO1
+#define UpButton IO1
+#define DownButton IO0
 #define SpeedPot A12 //For analog reads must use A-9, A-10, A-11, or A12 
 
 // Create Variables for the state of the inputs
@@ -60,7 +60,7 @@ void setup() {
 
     // Enables output to the motor (must have, even if not using the enable pin on the motor)
     motor.EnableRequest(true);
-
+    motor.PositionRefSet(0); // Set the motor in its home position. 
     Serial.println("Motor Ready");
 }
 
@@ -88,6 +88,7 @@ void loop() {
   }
   else{ // Turn off the motor if no buttons currently depressed
     motor.MoveStopDecel(4000); // Stops the motor using the higher of the current acceleration value or 4000 pulses/s^2
+    Serial.print(motor.PositionRefCommanded()); // Output the Current Position
   }
     
 }
