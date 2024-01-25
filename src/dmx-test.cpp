@@ -8,6 +8,7 @@ void setup() {
 // Set DMX module to master mode
 pinMode(2,OUTPUT);
 digitalWrite(2,HIGH);
+Serial.begin(9600);
 
 // Set the pin the module will receive commands on
 DmxSimple.usePin(4);
@@ -22,8 +23,10 @@ void loop(){
   for (brightness = 0; brightness <= 255; brightness++) {
     
     /* Update DMX channel 1 to new brightness */
+    DmxSimple.write(1, brightness);
+    DmxSimple.write(2, brightness);
+    DmxSimple.write(3, brightness);
     DmxSimple.write(4, brightness);
-    
     /* Small delay to slow down the ramping */
     delay(10);
     Serial.println(brightness);
