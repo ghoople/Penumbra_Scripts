@@ -10,20 +10,25 @@ pinMode(2,OUTPUT);
 digitalWrite(2,HIGH);
 Serial.begin(9600);
 
-// Set the pin the module will receive commands on
+// Set the pin the module will send commands on
 DmxSimple.usePin(4);
 
 // Set the maximum number of channels I have on my system. 
 DmxSimple.maxChannel(channels);
 Serial.println("Arudino Ready");
+DmxSimple.write(1, 0);
+DmxSimple.write(2, 0);
 }
 
 void loop(){
-  
-  for (brightness = 0; brightness <= 120; brightness++) {
-    DmxSimple.write(1, brightness);
-    DmxSimple.write(2, brightness);
-    delay(100);
-    //Serial.println(brightness);
-    }
+  // Set the brightness of the Bulbs
+DmxSimple.write(1, 30);
+DmxSimple.write(3, 0);
+delay(2000);
+  // Set the brightness of the Bulbs
+DmxSimple.write(1, 0);
+DmxSimple.write(3, 30);
+delay(2000);
+
+
 }
