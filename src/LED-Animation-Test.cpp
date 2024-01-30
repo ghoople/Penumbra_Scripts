@@ -17,7 +17,7 @@ void setup() {
   FastLED.addLeds<WS2812B, LED_GRP1, GRB>(leds, NUM_LEDS);  // Adjust color order if needed, website says Ws2815 are GRB and run same code as WS2812B
 //  FastLED.addLeds<WS2812B, LED_GRP2, GRB>(leds, NUM_LEDS);  
 //  FastLED.addLeds<WS2812B, LED_GRP3, GRB>(leds, NUM_LEDS);  
-  FastLED.setBrightness(255);  // Set maximum brightness
+  FastLED.setBrightness(20);  // Set maximum brightness
 }
 
 void loop() {
