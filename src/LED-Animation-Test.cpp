@@ -11,8 +11,6 @@
 //#define LED_GRP2 10  // Data pin on the arduino
 //#define LED_GRP3 11  // Data pin on the arduino
 
-//Add a comment. 
-
 CRGB leds[NUM_LEDS]; 
 
 void setup() {
