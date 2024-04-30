@@ -16,12 +16,12 @@
 // Configure Interrupts
 // Pins that support digital interrupts are:
 // DI-6, DI-7, DI-8, A-9, A-10, A-11, A-12
-#define BotInterruptPin DI6
+#define BotInterruptPin A11
 
 //Configure Inputs
 #define UpButton IO0
 #define DownButton IO1
-#define SpeedPot A12 //For analog reads must use A-9, A-10, A-11, or A12 
+#define SpeedPot A10 //For analog reads must use A-9, A-10, A-11, or A12 
 
 // Create Variables for the state of the inputs
 int State_UpButton = 0; 
@@ -36,9 +36,12 @@ int accelerationLimit = 4000; // pulses per sec^2
 // Define the physical relationship between steps and light position
 // See "Penumbra Motor Calculations" google sheet for value calculator
 int Pos_Bottom = 0; 
-int Pos_Top = 6112;
+int Pos_Top = 13000; // I think this should be close to 12740, will move manually to find it. 
 int Pos_Middle = Pos_Top/2;
-int Home_Offset = 509;
+int Home_Offset = 95; // This is about 1 inch. Need to test it. 
+
+// Define this at the top of your file or function
+unsigned long lastCheckTime = 0;
 
 // Declare functions included in this file
 void BottomHardStop(); // Interrupt for when the bottom hard stop is triggered
@@ -81,6 +84,8 @@ void setup() {
     // Enables output to the motor (must have, even if not using the enable pin on the motor)
     motor.EnableRequest(true);
 
+    motor.MoveVelocity(-500); // Move down slowly, should  stop when the hard stop is tripped.  
+
     Serial.println("Motor Ready");
 }
 
@@ -111,6 +116,15 @@ void loop() {
   }
   else{ // Turn off the motor if no buttons currently depressed
     motor.MoveStopDecel(4000); // Stops the motor using the higher of the current acceleration value or 4000 pulses/s^2
+  }
+
+  // Output my current position every 2 seconds
+  unsigned long currentTime = millis();
+  if(currentTime - lastCheckTime >= 2000) {
+      lastCheckTime = currentTime;
+      long motorPosition = motor.PositionRefCommanded();
+      Serial.print("Current motor position: ");
+      Serial.println(motorPosition);
   }
     
 }

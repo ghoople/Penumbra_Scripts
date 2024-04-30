@@ -2,8 +2,6 @@
 #include <Arduino.h>
 #include <ClearCore.h>
 
-// check github
-
 // Specifies which motor to move.
 // Options are: ConnectorM0, ConnectorM1, ConnectorM2, or ConnectorM3.
 #define motor ConnectorM0
