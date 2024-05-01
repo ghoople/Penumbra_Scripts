@@ -36,7 +36,7 @@ int accelerationLimit = 4000; // pulses per sec^2
 // Define the physical relationship between steps and light position
 // See "Penumbra Motor Calculations" google sheet for value calculator
 int Pos_Bottom = 0; 
-int Pos_Top = 13000; // I think this should be close to 12740, will move manually to find it. 
+int Pos_Top = 12036; // I think this should be close to 12740, will move manually to find it. 
 int Pos_Middle = Pos_Top/2;
 int Home_Offset = 95; // This is about 1 inch. Need to test it. 
 
@@ -85,6 +85,9 @@ void setup() {
     motor.EnableRequest(true);
 
     motor.MoveVelocity(-500); // Move down slowly, should  stop when the hard stop is tripped.  
+    while (!motor.StepsComplete()) {
+        continue;
+    }
 
     Serial.println("Motor Ready");
 }
