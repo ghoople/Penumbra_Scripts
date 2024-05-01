@@ -141,6 +141,10 @@ void loop() {
  */
 void BottomHardStop() {
     // Called via interrupt when the hard stop pin is tripped. 
+
+    // Deattach the hard stop pin so it doesn't trip twice (had this problem, known as "bouncing")
+    detachInterrupt(digitalPinToInterrupt(BotInterruptPin)); // detach the interrupt
+
     motor.MoveStopAbrupt();
 
     Serial.println("Bottom Hard Stop Triggered");
@@ -156,7 +160,12 @@ void BottomHardStop() {
 
     // Zero the motor's reference position after homing to allow for accurate absolute position moves
 
-    motor.PositionRefSet(0);      
+    motor.PositionRefSet(0);     
+
+    // Reattach the interrupt
+
+    attachInterrupt(digitalPinToInterrupt(BotInterruptPin), BottomHardStop, RISING);
+
 }
 
 
