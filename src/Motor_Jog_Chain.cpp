@@ -16,7 +16,7 @@
 //Configure Inputs
 #define UpButton IO1
 #define DownButton IO0
-#define SpeedPot A12 //For analog reads must use A-9, A-10, A-11, or A12 
+#define SpeedPot A10 //For analog reads must use A-9, A-10, A-11, or A12 
 
 // Create Variables for the state of the inputs
 int State_UpButton = 0; 
