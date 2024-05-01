@@ -20,10 +20,10 @@ Serial.println("Arudino Ready");
 
 void loop(){
   
-  for (brightness = 0; brightness <= 120; brightness++) {
+  for (brightness = 0; brightness <= 255; brightness++) {
     DmxSimple.write(1, brightness);
-    DmxSimple.write(2, brightness);
+    DmxSimple.write(3, brightness);
     delay(100);
-    //Serial.println(brightness);
+    Serial.println(brightness);
     }
 }
