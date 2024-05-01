@@ -88,11 +88,6 @@ void loop() {
   }
   else{ // Turn off the motor if no buttons currently depressed
     motor.MoveStopDecel(4000); // Stops the motor using the higher of the current acceleration value or 4000 pulses/s^2
-
-    if()  
-    Serial.print(motor.PositionRefCommanded()); // Output the Current Position
-  
-  
   }
     
 }
